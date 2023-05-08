@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반복문으로 리스트 만들기(jquery)</title>
+</head>
+
+<body>
+    <!-- jquery 속성추가 .attr -->
+    <h1>반복문으로 리스트 만들기(jquery)</h1>
+    <button onclick="render()">render</button>
+    <div class="box" id="outerBox"></div>
+    <script>
+        function render(){
+            let el=$("#outerBox");
+            for(let i = 0; i < 10; i++){
+                el.append(makeCard(i));
+            }
+        }
+        
+        function makeCard(id) {
+            let card = $("div");
+            card.attr("class","card");
+            console.log(card);
+            card.attr("id","card--"+id);
+            card.html(`
+            <h3>제목${id} 입니다.</h3>
+                <p>내용${id} 입니다.</P>
+                <button onclick="del(${id})">삭제</button>`
+            );
+            return card;
+        }
+        function del(id){
+            let el=$("#card--"+id);
+            el.remove();
+        }
+    </script>
+</body>
+
+</html>
